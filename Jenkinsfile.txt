@@ -52,8 +52,18 @@ pipeline {
         }
     }
     post {
+        success {
+            mail to: 'bayandkheel12@gmail.com',
+                 subject: "Success: ${currentBuild.fullDisplayName}",
+                 body: "The build was successful. Check the output at ${env.BUILD_URL}."
+        }
+        failure {
+            mail to: 'bayandkheel12@gmail.com',
+                 subject: "Failed: ${currentBuild.fullDisplayName}",
+                 body: "The build failed. Check the output at ${env.BUILD_URL}."
+        }
         always {
-            mail to: 'developer@example.com',
+            mail to: 'bayandkheel12@gmail.com',
                  subject: "Pipeline ${currentBuild.fullDisplayName}",
                  body: "Pipeline ${currentBuild.fullDisplayName} completed with status ${currentBuild.currentResult}"
         }
