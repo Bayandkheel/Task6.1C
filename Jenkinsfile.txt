@@ -4,50 +4,50 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                // Use Maven for building
-                sh 'mvn clean install'
+                // Use Maven for building (assuming Maven is installed and added to PATH)
+                bat 'mvn clean install'
             }
         }
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running unit and integration tests...'
                 // Run tests using Maven
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
         stage('Code Analysis') {
             steps {
                 echo 'Performing code analysis...'
                 // Perform code analysis using SonarQube
-                sh 'mvn sonar:sonar'
+                bat 'mvn sonar:sonar'
             }
         }
         stage('Security Scan') {
             steps {
                 echo 'Performing security scan...'
                 // Perform security scan using OWASP Dependency-Check
-                sh 'mvn dependency-check:check'
+                bat 'mvn dependency-check:check'
             }
         }
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying to staging...'
-                // Deploy to staging environment
-                sh 'deploy-to-staging.sh'
+                // Deploy to staging environment (replace with your deployment script)
+                bat 'deploy-to-staging.bat'
             }
         }
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Running integration tests on staging...'
-                // Run integration tests on staging environment
-                sh 'run-staging-tests.sh'
+                // Run integration tests on staging environment (replace with your script)
+                bat 'run-staging-tests.bat'
             }
         }
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying to production...'
-                // Deploy to production environment
-                sh 'deploy-to-production.sh'
+                // Deploy to production environment (replace with your deployment script)
+                bat 'deploy-to-production.bat'
             }
         }
     }
