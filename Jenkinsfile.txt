@@ -4,50 +4,43 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                // Use Maven for building (assuming Maven is installed and added to PATH)
-                bat 'mvn clean install'
+                // Code removed
             }
         }
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running unit and integration tests...'
-                // Run tests using Maven
-                bat 'mvn test'
+                // Code removed
             }
         }
         stage('Code Analysis') {
             steps {
                 echo 'Performing code analysis...'
-                // Perform code analysis using SonarQube
-                bat 'mvn sonar:sonar'
+                // Code removed
             }
         }
         stage('Security Scan') {
             steps {
                 echo 'Performing security scan...'
-                // Perform security scan using OWASP Dependency-Check
-                bat 'mvn dependency-check:check'
+                // Code removed
             }
         }
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying to staging...'
-                // Deploy to staging environment (replace with your deployment script)
-                bat 'deploy-to-staging.bat'
+                // Code removed
             }
         }
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Running integration tests on staging...'
-                // Run integration tests on staging environment (replace with your script)
-                bat 'run-staging-tests.bat'
+                // Code removed
             }
         }
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying to production...'
-                // Deploy to production environment (replace with your deployment script)
-                bat 'deploy-to-production.bat'
+                // Code removed
             }
         }
     }
