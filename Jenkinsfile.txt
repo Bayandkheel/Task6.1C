@@ -12,6 +12,13 @@ pipeline {
                 echo 'Running unit and integration tests...'
                 // Code removed
             }
+            post {
+                success {
+                    mail to: 'bayandkheel12@gmail.com',
+                         subject: "Success: ${currentBuild.fullDisplayName} - Unit and Integration Tests",
+                         body: "The unit and integration tests were successful. Check the output at ${env.BUILD_URL}."
+                }
+            }
         }
         stage('Code Analysis') {
             steps {
@@ -23,6 +30,13 @@ pipeline {
             steps {
                 echo 'Performing security scan...'
                 // Code removed
+            }
+            post {
+                success {
+                    mail to: 'bayandkheel12@gmail.com',
+                         subject: "Success: ${currentBuild.fullDisplayName} - Security Scan",
+                         body: "The security scan was successful. Check the output at ${env.BUILD_URL}."
+                }
             }
         }
         stage('Deploy to Staging') {
@@ -45,11 +59,6 @@ pipeline {
         }
     }
     post {
-        success {
-            mail to: 'bayandkheel12@gmail.com',
-                 subject: "Success: ${currentBuild.fullDisplayName}",
-                 body: "The build was successful. Check the output at ${env.BUILD_URL}."
-        }
         failure {
             mail to: 'bayandkheel12@gmail.com',
                  subject: "Failed: ${currentBuild.fullDisplayName}",
