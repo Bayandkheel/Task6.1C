@@ -59,15 +59,32 @@ pipeline {
         }
     }
     post {
+        success {
+            // Archive the log file
+            archiveArtifacts artifacts: 'log.txt', onlyIfSuccessful: true
+            // Send email with log file attached
+            mail to: 'bayandkheel12@gmail.com',
+                 subject: "Success: ${currentBuild.fullDisplayName}",
+                 body: "The build was successful. Check the output at ${env.BUILD_URL}.",
+                 attachLog: true
+        }
         failure {
+            // Archive the log file
+            archiveArtifacts artifacts: 'log.txt', allowEmptyArchive: true
+            // Send email with log file attached
             mail to: 'bayandkheel12@gmail.com',
                  subject: "Failed: ${currentBuild.fullDisplayName}",
-                 body: "The build failed. Check the output at ${env.BUILD_URL}."
+                 body: "The build failed. Check the output at ${env.BUILD_URL}.",
+                 attachLog: true
         }
         always {
+            // Archive the log file
+            archiveArtifacts artifacts: 'log.txt', allowEmptyArchive: true
+            // Send email with log file attached
             mail to: 'bayandkheel12@gmail.com',
                  subject: "Pipeline ${currentBuild.fullDisplayName}",
-                 body: "Pipeline ${currentBuild.fullDisplayName} completed with status ${currentBuild.currentResult}"
+                 body: "Pipeline ${currentBuild.fullDisplayName} completed with status ${currentBuild.currentResult}",
+                 attachLog: true
         }
     }
 }
